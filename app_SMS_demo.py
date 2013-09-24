@@ -79,7 +79,7 @@ def sms():
     answer_response = False
     response = False
     if counter == 1:
-    	response = "We're excited you've chosen to take our healthcare knowledge quiz. First question: What's the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
+    	response = "We're excited you've chosen to take our healthcare knowledge quiz. First question: ..."
     elif counter == 2:
         answer_response = "No, the average annual premium for family coverage on an employer health plan is $15,745."
     	if answer.lower() == 'b':
