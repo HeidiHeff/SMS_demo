@@ -11,6 +11,13 @@
 # Demonstrated on 9/27/2013 at CodingDojo via LAMPP with ngrok proxy
 #
 # Special Thanks to Joel Franusic, Developer Advocate at Twilio
+#
+############
+# get local app running
+# foreman start to makesure
+# git push heroku master to run
+# heroku open to verify
+############
 #--------------------------------------------------------------------------------
 
 # import needed libraries and modules
@@ -41,56 +48,11 @@ callers = {
 def index():
     return 'hello'
 
-# ? Allow users to call twilio number from webpage to demonstrate telephony
-# integration with Twilio
-# Handle a POST request to make an outbound call. This is called via ajax
-# on our web page
-# @app.route('/call', methods=['POST'])
-# def call():
-#     # Make an outbound call to the provided number from your Twilio number
-#     call = client.calls.create(to=request.form['to'], from_=TWILIO_NUMBER,
-#                                url='')
-
-#     # Return a message indicating the call is coming
-#     return 'Call inbound!'
-
-# @app.route("/voice")
-# def voice():
-#     response = twiml.Response()
-#     with response.gather(numDigits=1, action='/gather') as g:
-#         g.say('If you would like to leave a recorded message, press 1, else press 2 to listen to the last recorded message.', voice='woman')
-#     return str(response)
-
-# Collect voice message
-# @app.route("/gather", methods = ["GET", "POST"])
-# def gather():
-#     response = twiml.Response()
-#     if request.form['Digits'] == "1":
-#         response.say('Leave your message now.', voice='woman')
-#         response.record(maxLength = 30, action = '/record', method = 'POST')
-#     elif request.form['Digits'] == "2":
-#         response.say("Here is the last message.", voice='woman')
-#         with open('last.txt', 'r') as f:
-#             theFile = f.readline()
-#             response.play(theFile)
-#     else:
-#         response.say("You didn't choose either 1 or 2. Goodbye.", voice='woman')
-#     return str(response)
-
-# Store voice message
-# @app.route("/record", methods = ["GET", "POST"])
-# def record():
-#     response = twiml.Response()
-#     f = open('last.txt', 'w')
-#     f.write(request.form['RecordingUrl'])
-#     f.close()
-#     return str(response)
-# ?
 
 # set URL for Twilio to retrieve and execute the TwiML via the selected HTTP
 # method when this number receives a message. # Handle a POST request to send a
 #text message (via ajax)
-@app.route("/sms", methods = ['POST'])
+@app.route("/sms", methods = ['GET', 'POST'])
 def sms():	
     """Respond with the number of text messages sent between two parties."""
     counter = session.get('counter', 0)
