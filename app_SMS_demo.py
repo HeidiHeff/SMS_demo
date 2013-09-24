@@ -65,47 +65,42 @@ def sms():
     if from_number in callers:
         name = callers[from_number]
     else:
-        name = "Monkey"
-    
+        name = "Person"
+
     # temp code
-    message = "{} has messaged {} {} times.".format(name, request.values.get('To'), counter)
-    response = twilio.twiml.Response()
-    response.sms(message)
+    # message = "{} has messaged {} {} times.".format(name, request.values.get('To'), counter)
+    # response.sms(message)
  
-    return str(response)
+    # return str(response)
 
     # PSEUDOCODE FOR FUNCTIONALITY OF TEXTING
-    # score = 0
-    # if counter == 1:
-    	# response "We're excited you've chosen to take our healthcare knowledge quiz.
-        # First question: What’s the average annual premium for family coverage
-        # on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D)
-        # $12,375"
-        # return response
-    	# if answer.lower() == 'b':
-        #   response "That's correct!"
-        #   score += 1
-        #   return response
-        # else:
-        #   response "No, the average annual premium for family coverage on an
-        #   employer health plan is $15,745."
-        #   return response
-    # elif counter == 2:
-        # response "Second question: What percentage of employer health premiums do
-        # workers pay, on average? A) 27.4%, B) 17.1%, C) 50.3%, or D) 5.8%"
-        # return response
-        # if answer.lower() == 'a':
-        #   response "That's correct!"
-        #   score += 1
-        #   return response
-        # else:
-        #   response "No, the average percentage of employer health premiums paid by
-        #   workers is 27.4%"
-        #   return response
-    # elif counter == 3:
-        # response "When do most Americans have to purchase health insurance or face
-        # a penalty under the federal healthcare law? A) January 2015, B) January
-        # 2014, C) December 2013, or D) December 2015."
+    score = session.get('score', 0)
+    answer = request.values.get('Body', '')
+    answer_response = False
+    response = False
+    if counter == 1:
+    	response = "We're excited you've chosen to take our healthcare knowledge quiz. First question: What's the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
+    elif counter == 2:
+        answer_response = "No, the average annual premium for family coverage on an employer health plan is $15,745."
+    	if answer.lower() == 'b':
+            answer_response = "That's correct!"
+            score += 1
+        response = "Second question: What percentage of employer health premiums do workers pay, on average? A) 27.4%, B) 17.1%, C) 50.3%, or D) 5.8%"
+    elif counter == 3:
+        answer_response = "No, the average percentage of employer health premiums paid by workers is 27.4%"
+        if answer.lower() == 'a':
+            answer_response = "That's correct!"
+            score += 1
+        response = "When do most Americans have to purchase health insurance or face a penalty under the federal healthcare law? A) January 2015, B) January 2014, C) December 2013, or D) December 2015."
+
+    session['score'] = score
+    
+    resp = twilio.twiml.Response()
+    if answer_response:
+        resp.sms(answer_response)
+    resp.sms(response)
+    return str(resp)
+
         # return response
         # if answer.lower() == 'b':
         #   response "That's correct!"
