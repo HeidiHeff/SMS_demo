@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #--------------------------------------------------------------------------------
 # Heidi Heffelfinger - CodingDojo
 # SMS Text - Demonstration Application
@@ -16,12 +17,7 @@
 from flask import Flask, request, redirect, session
 import twilio.twiml
 from twilio.rest import TwilioRestClient
-# ?import os for sys config?
-
-# ?Pull in configuration from system environment variables - is this needed w/ngrok?
-# TWILIO_ACCOUNT_SID = os.environ.get('ACf99ed41102d88db39566f57ccf293309')
-# TWILIO_AUTH_TOKEN = os.environ.get('65a6f4045239f1b5011d820d2b0dd746')
-# TWILIO_NUMBER = os.environ.get('+14154841446')
+import os
 
 # ?create an authenticated client that can make requests to Twilio for your
 # account.
@@ -43,7 +39,7 @@ callers = {
 # Render the home page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return 'hello'
 
 # ? Allow users to call twilio number from webpage to demonstrate telephony
 # integration with Twilio

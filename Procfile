@@ -1,0 +1,1 @@
+web: gunicorn app_SMS_demo:app
