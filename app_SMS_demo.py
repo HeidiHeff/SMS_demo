@@ -51,7 +51,7 @@ def index():
 
 # set URL for Twilio to retrieve and execute the TwiML via the selected HTTP
 # method when this number receives a message. # Handle a POST request to send a
-#text message (via ajax)
+# text message (via ajax)
 @app.route("/sms", methods = ['GET', 'POST'])
 def sms():	
     """Respond with the number of text messages sent between two parties."""
@@ -66,10 +66,9 @@ def sms():
         name = callers[from_number]
     else:
         name = "Monkey"
-
+    
     # temp code
-    message = "".join([name, " has messaged ", request.values.get('To'), " ", 
-        str(counter), " times."])
+    message = "{} has messaged {} {} times.".format(name, request.values.get('To'), counter)
     response = twilio.twiml.Response()
     response.sms(message)
  
