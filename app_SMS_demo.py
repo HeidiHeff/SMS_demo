@@ -58,6 +58,9 @@ def sms():
     counter = session.get('counter', 0)
     # increment the counter
     counter += 1
+    # Reset counter of it gets too big
+    if counter > 3:
+        counter = 1
     # Save the new counter value in the session
     session['counter'] = counter
 
