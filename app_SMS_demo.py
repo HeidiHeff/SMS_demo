@@ -112,7 +112,7 @@ def sms():
             score +=1
         response = "Thanks for taking the healthcare quiz! You correctly answered %d out of 5 questions" % score
         # destroy conversation state
-        session.delete()
+        # session.delete()
 
 
     session['score'] = score
