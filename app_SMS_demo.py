@@ -94,8 +94,6 @@ def sms():
             score +=1
         # end quiz, provide user with score
         response = "Thanks for taking our healthcare knowledge quiz! You correctly answered %d out of 5 questions." % score
-        # destroy session
-        # session.delete()
 
     # set score for the session
     session['score'] = score
