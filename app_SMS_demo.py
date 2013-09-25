@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+# above line: encoding set from unicode to utf-8
+#
 #------------------------------------------------------------------------------
 # Heidi Heffelfinger - CodingDojo
 # SMS Text - Demonstration Application
@@ -37,12 +39,6 @@ SECRET_KEY = 'a secret key'
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-# list of known numbers
-# callers = {
-#     "+14158275389": "HH",
-#     "+14153784497": "BH"
-# }
-
 # Render the home page
 @app.route('/')
 def index():
@@ -62,23 +58,13 @@ def sms():
     # Save the new counter value in the session
     session['counter'] = counter
 
-    # from_number = request.values.get('From')
-    # if from_number in callers:
-    #     name = callers[from_number]
-    # else:
-    #     name = "Person"
-
-    # temp code
-    # message = "{} has messaged {} {} times.".format(name, request.values.get('To'), counter)
-    # response.sms(message)
- 
-    # return str(response)
-
-    # PSEUDOCODE FOR FUNCTIONALITY OF TEXTING
+    # initialize variables
     score = session.get('score', 0)
     answer = request.values.get('Body', '')
     answer_response = False
     response = False
+
+    # start quiz
     if counter == 1:
     	response = "Welcome to our healthcare knowledge quiz. First question: What’s the average annual premium for family coverage on an employer health plan?"
     elif counter == 2:
