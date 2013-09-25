@@ -26,10 +26,6 @@ import twilio.twiml
 from twilio.rest import TwilioRestClient
 import os
 
-# ?create an authenticated client that can make requests to Twilio for your
-# account.
-# client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
 # The session object makes use of a secret key.
 SECRET_KEY = 'a secret key'
 
