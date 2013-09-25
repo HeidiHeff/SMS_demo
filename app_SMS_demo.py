@@ -2,9 +2,10 @@
 # above line: encoding set from unicode to utf-8
 #
 #------------------------------------------------------------------------------
-# Heidi Heffelfinger - CodingDojo
-# SMS Text - Demonstration Application
-# Twilio Number - 415.484.1446
+#
+# Author: Heidi Heffelfinger - CodingDojo
+# SMS Text - Demonstration Application w/Twilio API
+# Twilio Number - XXX-XXX-XXXX
 #
 # Technologies used:
 # Python on a Flask framework
@@ -14,16 +15,10 @@
 # git
 # Heroku
 #
-# Demonstrated on 9/27/2013 at CodingDojo
+# To be demonstrated on 9/27/2013 at CodingDojo
 #
 # Special Thanks to Joel Franusic, Developer Advocate at Twilio
 #
-############
-# get local app running
-# foreman start to makesure
-# git push heroku master to run
-# heroku open to verify
-############
 #------------------------------------------------------------------------------
 
 # import needed libraries and modules
@@ -97,6 +92,8 @@ def sms():
             answer_response = "That's correct!"
             score +=1
         response = "Thanks for taking the healthcare quiz! You correctly answered %d out of 5 questions" % score
+        # destroy session
+        # session.delete()
 
     session['score'] = score
     
