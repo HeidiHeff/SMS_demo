@@ -62,7 +62,7 @@ def sms():
 
     # start quiz
     if counter == 1:
-    	response = "Welcome to our healthcare knowledge quiz. 1st question: What is the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
+    	response = "1st question: What is the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
     elif counter == 2:
         answer_response = "No, the average premium for family coverage on an employer health plan is $15,745."
     	if answer.lower() == 'b':
