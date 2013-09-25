@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
-#--------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 # Heidi Heffelfinger - CodingDojo
 # SMS Text - Demonstration Application
-# Twilio Number - 415.484.5213
+# Twilio Number - 415.484.1446
 #
-# Utilizes:
+# Technologies used:
 # Python on a Flask framework
 # Twilio API
+# virtualenv
+# gunicorn
+# git
+# Heroku
 #
-# Demonstrated on 9/27/2013 at CodingDojo via LAMPP with ngrok proxy
+# Demonstrated on 9/27/2013 at CodingDojo
 #
 # Special Thanks to Joel Franusic, Developer Advocate at Twilio
 #
@@ -18,7 +22,7 @@
 # git push heroku master to run
 # heroku open to verify
 ############
-#--------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 
 # import needed libraries and modules
 from flask import Flask, request, redirect, session
