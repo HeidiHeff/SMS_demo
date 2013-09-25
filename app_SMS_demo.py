@@ -38,20 +38,18 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 # list of known numbers
-callers = {
-    "+14158275389": "HH",
-    "+14153784497": "BH"
-}
+# callers = {
+#     "+14158275389": "HH",
+#     "+14153784497": "BH"
+# }
 
 # Render the home page
 @app.route('/')
 def index():
     return 'hello'
 
-
 # set URL for Twilio to retrieve and execute the TwiML via the selected HTTP
-# method when this number receives a message. # Handle a POST request to send a
-# text message (via ajax)
+# method when this number receives a message.
 @app.route("/sms", methods = ['GET', 'POST'])
 def sms():	
     """Respond with the number of text messages sent between two parties."""
@@ -59,16 +57,16 @@ def sms():
     # increment the counter
     counter += 1
     # Reset counter of it gets too big
-    if counter > 3:
+    if counter > 6:
         counter = 1
     # Save the new counter value in the session
     session['counter'] = counter
 
-    from_number = request.values.get('From')
-    if from_number in callers:
-        name = callers[from_number]
-    else:
-        name = "Person"
+    # from_number = request.values.get('From')
+    # if from_number in callers:
+    #     name = callers[from_number]
+    # else:
+    #     name = "Person"
 
     # temp code
     # message = "{} has messaged {} {} times.".format(name, request.values.get('To'), counter)
@@ -82,7 +80,7 @@ def sms():
     answer_response = False
     response = False
     if counter == 1:
-    	response = "We're excited you've chosen to take our healthcare knowledge quiz. First question: ..."
+    	response = "Welcome to our healthcare knowledge quiz. First question: What’s the average annual premium for family coverage on an employer health plan?"
     elif counter == 2:
         answer_response = "No, the average annual premium for family coverage on an employer health plan is $15,745."
     	if answer.lower() == 'b':
@@ -94,7 +92,28 @@ def sms():
         if answer.lower() == 'a':
             answer_response = "That's correct!"
             score += 1
-        response = "When do most Americans have to purchase health insurance or face a penalty under the federal healthcare law? A) January 2015, B) January 2014, C) December 2013, or D) December 2015."
+        response = "3rd question: When do Americans have to purchase health insurance or face a penalty? A) January 2015, B) January 2014, C) December 2013, or D) December 2015."
+    elif counter == 4:
+        answer_response = "No, most Americans have to purchase health insurance or face a penalty under the federal healthcare law by January 2014."
+        if answer.lower() == 'b':
+            answer_response = "That's correct!"
+            score += 1
+        response = "4th question: What percentage of U.S. small businesses offered health benefits to their workers in 2010? A) 49%, B) 69%, C) 32%, or D) 58%."
+    elif counter == 5:
+        answer_response = "No, the percentage of U.S. small businesses which offered health benefits in 2010 was 49%."
+        if answer.lower() == 'a':
+            answer_response = "That's correct!"
+            score += 1
+        response = "5th question: How many people under 26 have been added to health plans as part of the Affordable Care Act? A) 5.6 mil., B) 0.5 mil., C) 2.9 mil., or D) 1.3 mil."
+    elif counter == 6:
+        answer_response = "No, 2.9 million young adults under age 26 have been added to parents' health plans as part of the Affordable Care Act."
+        if answer.lower() == 'c':
+            answer_response = "That's correct!"
+            score +=1
+        response = "Thanks for taking the healthcare quiz! You correctly answered %d out of 5 questions" % score
+        # destroy conversation state
+        # session.delete()
+
 
     session['score'] = score
     
@@ -103,46 +122,6 @@ def sms():
         resp.sms(answer_response)
     resp.sms(response)
     return str(resp)
-
-        # return response
-        # if answer.lower() == 'b':
-        #   response "That's correct!"
-        #   score += 1
-        #   return response
-        # else:
-        #   response "No, most Americans have to purchase health insurance or face a
-        #   penalty under the federal healthcare law by January 2014."
-        #   return response
-    # elif counter == 4:
-        # response "What percentage of U.S. small businesses offered health benefits
-        # to their workers in 2010? A) 49%, B) 69%, C) 32%, or D) 58%."
-        # return response
-        # if answer.lower() == 'a':
-        #   response "That's correct!"
-        #   score += 1
-        #   return response
-        # else:
-        #   response "No, the percentage of U.S. small businesses which
-        #   offered health benefits in 2010 was 49%."
-        #   return response
-    # elif counter == 5:
-        # response "How many young adults under age 26 have been added to their
-        #  parents’ health plans as part of the Affordable Care Act? A) 5.6 million,
-        # B) 0.5 million, C) 2.9 million, or D) 1.3 million."
-        # return response
-        # if answer.lower() == 'c':
-        #   response "That's correct!"
-        #   score += 1
-        #   return response
-        # else:
-        #   response "No, 2.9 million young adults under age 26 have been added to
-        #   their parents' health plans as part of the Affordable Care Act."
-        #   return response
-
-    # response "You got %d out of 5 healthcare questions correct" % score
-    # return response
-
-    # destroy conversation state
 
 # run the app if initialized; run debugger pre-production
 if __name__ == "__main__":
