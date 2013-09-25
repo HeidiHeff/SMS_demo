@@ -65,13 +65,13 @@ def sms():
     	response = "1st question: What is the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
     elif counter == 2:
         answer_response = "No, the average premium for family coverage on an employer health plan is $15,745."
-    	if answer.lower() == 'b':
+    	if answer.lower() == 'b' || answer == "15,745":
             answer_response = "You are correct!"
             score += 1
         response = "2nd question: What percentage of employer health premiums do workers pay, on average? A) 27.4%, B) 17.1%, C) 50.3%, or D) 5.8%"
     elif counter == 3:
         answer_response = "No, the average percentage of employer health premiums paid by workers is 27.4%."
-        if answer.lower() == 'a':
+        if answer.lower() == 'a' || answer == "27.4":
             answer_response = "You are correct!"
             score += 1
         response = "3rd question: When must most Americans purchase health insurance or face a penalty? A) January 2015, B) January 2014, C) December 2013, or D) December 2015"
