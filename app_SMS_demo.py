@@ -46,7 +46,7 @@ def index():
 
 # set URL for Twilio to retrieve and execute the TwiML via the selected HTTP
 # method when this number receives a message.
-@app.route("/sms", methods = ['GET', 'POST'])
+@app.route("/sms/", methods = ['GET', 'POST'])
 def sms():	
     """Respond with the number of text messages sent between two parties."""
     counter = session.get('counter', 0)
