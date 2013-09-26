@@ -29,7 +29,7 @@
 from flask import Flask, request, redirect, session
 import twilio.twiml
 from twilio.rest import TwilioRestClient
-import os
+# import os
 
 # The session object makes use of a secret key.
 SECRET_KEY = 'FMy"oSxC8p_sW#7~&9h3?!=nhe$%|wT'
