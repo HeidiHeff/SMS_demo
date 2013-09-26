@@ -29,7 +29,7 @@ from twilio.rest import TwilioRestClient
 import os
 
 # The session object makes use of a secret key.
-SECRET_KEY = 'a secret key'
+SECRET_KEY = 'R84uE[Dq3t(1A2QPBWK85X538+o539'
 
 #initialize app
 app = Flask(__name__)
@@ -48,9 +48,10 @@ def sms():
     counter = session.get('counter', 0)
     # increment the counter
     counter += 1
-    # Reset counter of it gets too big
+    # Reset counter & score after quiz
     if counter > 6:
         counter = 1
+        score = 0
     # Save the new counter value in the session
     session['counter'] = counter
 
@@ -65,7 +66,7 @@ def sms():
     	response = "1st question: What is the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
     elif counter == 2:
         answer_response = "No, the average premium for family coverage on an employer health plan is $15,745."
-    	if answer.lower() == 'b' or answer == "$15,745":
+    	if answer.lower() == 'c' or answer == "$15,745":
             answer_response = "You are correct!"
             score += 1
         response = "2nd question: What percentage of employer health premiums do workers pay, on average? A) 27.4%, B) 17.1%, C) 50.3%, or D) 5.8%"
