@@ -29,7 +29,7 @@ from twilio.rest import TwilioRestClient
 import os
 
 # The session object makes use of a secret key.
-SECRET_KEY = 'R84uE[Dq3t(1A2QPBWK85X538+o539'
+SECRET_KEY = '-h-T1kEoON7}W(A4W4CzdOOpovyQ&&'
 
 #initialize app
 app = Flask(__name__)
@@ -48,10 +48,9 @@ def sms():
     counter = session.get('counter', 0)
     # increment the counter
     counter += 1
-    # Reset counter & score after quiz
+    # Reset counter after quiz
     if counter > 6:
         counter = 1
-        score = 0
     # Save the new counter value in the session
     session['counter'] = counter
 
@@ -95,6 +94,8 @@ def sms():
             score +=1
         # end quiz, provide user with score
         response = "Thanks for taking our healthcare knowledge quiz! You correctly answered %d out of 5 questions." % score
+        # reset score to 0
+        score = 0
 
     # set score for the session
     session['score'] = score
