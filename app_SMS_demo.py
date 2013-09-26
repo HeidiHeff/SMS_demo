@@ -29,7 +29,6 @@
 from flask import Flask, request, redirect, session
 import twilio.twiml
 from twilio.rest import TwilioRestClient
-# import os
 
 # The session object makes use of a secret key.
 SECRET_KEY = 'FMy"oSxC8p_sW#7~&9h3?!=nhe$%|wT'
@@ -111,7 +110,6 @@ def sms():
     resp.sms(response)
     return str(resp)
 
-# run the app if initialized; run debugger pre-production
+# run the app if initialized
 if __name__ == "__main__":
-	# app.debug = True
 	app.run()
