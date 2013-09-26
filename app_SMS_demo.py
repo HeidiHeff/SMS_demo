@@ -1,24 +1,27 @@
 # -*- coding: utf-8 -*-
 # above line: encoding set from python default unicode to utf-8
-#
+
 #------------------------------------------------------------------------------
 #
 # Author: Heidi Heffelfinger - CodingDojo
-# SMS Text - Demonstration Application w/Twilio API
+# Dev environment:  Linux - Ubuntu 13.04 (kernel: 3.8.0-30)
+#                   virtualenv
+#                   git (v1.8.1.2)
+#
+# App: SMS Text - Demonstration Application w/Twilio API
+# Version: 1.0.0 - demo only
+# Code: https://github.com/HeidiHeff/SMS_demo
+#
 # Twilio Number - 415-484-1446
-# Heroku: http://quiet-tundra-1590.herokuapp.com/sms
+# URL: http://quiet-tundra-1590.herokuapp.com/sms
 #
-# Technologies used:
-# Python on a Flask framework
-# Twilio API
-# virtualenv
-# gunicorn
-# git
-# Heroku
+# Language: Python (v2.7.4)
+# Framework: Flask (v0.10.1)
+# API(s) used: Twilio-python
+# Server-type: Green Unicorn (v18.0)
+# PaaS: Heroku
 #
-# To be demonstrated on 9/27/2013 at CodingDojo
-#
-# Special Thanks to Joël Franusic, Developer Advocate at Twilio
+# First demonstrated on 9/27/2013 at CodingDojo
 #
 #------------------------------------------------------------------------------
 
@@ -29,7 +32,7 @@ from twilio.rest import TwilioRestClient
 import os
 
 # The session object makes use of a secret key.
-SECRET_KEY = '-h-T1kEoON7}W(A4W4CzdOOpovyQ&&'
+SECRET_KEY = 'FMy"oSxC8p_sW#7~&9h3?!=nhe$%|wT'
 
 #initialize app
 app = Flask(__name__)
@@ -62,6 +65,7 @@ def sms():
 
     # start quiz
     if counter == 1:
+        answer_response = "Thanks for taking our 5 question U.S. healthcare knowledge quiz."
     	response = "1st question: What is the average annual premium for family coverage on an employer health plan? A) $7,791, B) $21,248, C) $15,745, or D) $12,375"
     elif counter == 2:
         answer_response = "No, the average premium for family coverage on an employer health plan is $15,745."
@@ -109,5 +113,5 @@ def sms():
 
 # run the app if initialized; run debugger pre-production
 if __name__ == "__main__":
-	app.debug = True
+	# app.debug = True
 	app.run()
